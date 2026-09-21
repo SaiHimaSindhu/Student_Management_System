@@ -1,0 +1,82 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Home - Student Management System{% endblock %}
+
+{% block content %}
+<div class="glass-container text-center mb-4 hero-card">
+    <h1 class="display-5 fw-bold mb-2"><i class="bi bi-mortarboard-fill"></i> Student Management System</h1>
+    <p class="lead mb-4">A modern dashboard to add, view, search, update and delete student records.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{% url 'students:add_student' %}" class="btn btn-glow px-4">
+            <i class="bi bi-person-plus me-1"></i> Add Student
+        </a>
+        <a href="{% url 'students:student_list' %}" class="btn btn-outline-light px-4">
+            <i class="bi bi-list-ul me-1"></i> View Student List
+        </a>
+    </div>
+</div>
+
+<!-- ===================== DASHBOARD STAT CARDS ===================== -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="glass-card stat-card h-100">
+            <i class="bi bi-people-fill stat-icon"></i>
+            <h2 class="fw-bold mb-0">{{ total_students }}</h2>
+            <p class="mb-0">Total Students</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card stat-card h-100">
+            <i class="bi bi-book-fill stat-icon"></i>
+            <h2 class="fw-bold mb-0">{{ total_courses }}</h2>
+            <p class="mb-0">Courses Offered</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card stat-card h-100">
+            <i class="bi bi-database-fill-check stat-icon"></i>
+            <h2 class="fw-bold mb-0">SQLite</h2>
+            <p class="mb-0">Database Backend</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== RECENTLY ADDED STUDENTS ===================== -->
+<div class="glass-container">
+    <h4 class="mb-3"><i class="bi bi-clock-history me-2"></i>Recently Added Students</h4>
+    {% if recent_students %}
+        <div class="table-responsive">
+            <table class="table table-dark-glass align-middle">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Roll No.</th>
+                        <th>Course</th>
+                        <th>Joining Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in recent_students %}
+                    <tr>
+                        <td>
+                            {% if student.profile_photo %}
+                                <img src="{{ student.profile_photo.url }}" class="avatar-thumb" alt="{{ student.student_name }}">
+                            {% else %}
+                                <span class="avatar-thumb avatar-placeholder"><i class="bi bi-person-fill"></i></span>
+                            {% endif %}
+                        </td>
+                        <td>{{ student.student_name }}</td>
+                        <td>{{ student.roll_number }}</td>
+                        <td>{{ student.course }}</td>
+                        <td>{{ student.joining_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center mb-0 opacity-75">No students added yet. <a href="{% url 'students:add_student' %}">Add the first one</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

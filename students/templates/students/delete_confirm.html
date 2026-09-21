@@ -1,0 +1,34 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Delete Student - Student Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="glass-container text-center">
+            <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 3rem;"></i>
+            <h3 class="mt-3 mb-3">Delete Student?</h3>
+
+            {% if student.profile_photo %}
+                <img src="{{ student.profile_photo.url }}" class="avatar-large mb-3" alt="{{ student.student_name }}">
+            {% endif %}
+
+            <p class="mb-1">Are you sure you want to permanently delete:</p>
+            <p class="fs-5 fw-bold mb-4">{{ student.student_name }} ({{ student.roll_number }})</p>
+            <p class="opacity-75 mb-4">This action cannot be undone.</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-flex justify-content-center gap-3">
+                    <button type="submit" class="btn btn-danger px-4">
+                        <i class="bi bi-trash3 me-1"></i> Yes, Delete
+                    </button>
+                    <a href="{% url 'students:student_list' %}" class="btn btn-outline-light px-4">
+                        <i class="bi bi-x-circle me-1"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

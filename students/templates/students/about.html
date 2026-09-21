@@ -1,0 +1,34 @@
+{% extends 'students/base.html' %}
+
+{% block title %}About - Student Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="glass-container">
+            <h3 class="mb-4 text-center"><i class="bi bi-info-circle me-2"></i>About This Project</h3>
+            <p>
+                The <strong>Student Management System</strong> is a full-stack web application built with
+                <strong>Django</strong>, <strong>Bootstrap 5</strong> and <strong>SQLite</strong>. It allows
+                an institute to manage its student records with a complete set of Create, Read, Update and
+                Delete (CRUD) operations.
+            </p>
+            <h5 class="mt-4">Key Features</h5>
+            <ul>
+                <li>Add new students with a validated form, including a profile photo upload.</li>
+                <li>Browse all students in a responsive, sortable-looking table.</li>
+                <li>Search students instantly by name or roll number.</li>
+                <li>Edit any student's details, including replacing their photo.</li>
+                <li>Delete a student safely, with a confirmation step to prevent mistakes.</li>
+                <li>Manage everything from the Django admin panel as well.</li>
+            </ul>
+            <h5 class="mt-4">Technology Stack</h5>
+            <ul>
+                <li>Backend: Python, Django</li>
+                <li>Database: SQLite (Django's default)</li>
+                <li>Frontend: HTML5, CSS3, Bootstrap 5, Bootstrap Icons</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
