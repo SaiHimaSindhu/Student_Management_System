@@ -1,0 +1,6 @@
+{# Renders one form field with its label and errors #}
+<div class="field field-{{ field.name }}">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field }}
+  {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+</div>

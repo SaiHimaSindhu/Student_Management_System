@@ -1,0 +1,13 @@
+{# Shared by add_student.html and edit_student.html #}
+<form method="post" novalidate>
+  {% csrf_token %}
+  <div class="form-grid">
+    {% for field in form %}
+      {% include "students/_field.html" %}
+    {% endfor %}
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
+    <a href="{% url 'view_students' %}" class="btn btn-outline">Cancel</a>
+  </div>
+</form>

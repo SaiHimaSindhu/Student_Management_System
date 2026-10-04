@@ -1,0 +1,19 @@
+{% extends "students/base.html" %}
+{% block title %}Delete Student | Student Management System{% endblock %}
+{% block content %}
+  <h1 class="page-title">Delete Student</h1>
+  <div class="card confirm-card">
+    <p>Are you sure you want to delete this student? This cannot be undone.</p>
+    <dl class="details">
+      <dt>Name</dt><dd>{{ student.full_name }}</dd>
+      <dt>Roll Number</dt><dd>{{ student.roll_number }}</dd>
+      <dt>Email</dt><dd>{{ student.email }}</dd>
+      <dt>Course</dt><dd>{{ student.course }} ({{ student.year }})</dd>
+    </dl>
+    <form method="post" class="form-actions">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+      <a href="{% url 'view_students' %}" class="btn btn-outline">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

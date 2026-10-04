@@ -1,0 +1,23 @@
+{% extends "students/auth_base.html" %}
+{% block title %}Login | Student Management System{% endblock %}
+{% block content %}
+  <h2>Welcome back</h2>
+  <p class="subtitle">Log in to continue to your dashboard.</p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {% if form.non_field_errors %}
+      <div class="alert alert-error">{{ form.non_field_errors.0 }}</div>
+    {% endif %}
+    {% include "students/_field.html" with field=form.identifier %}
+    {% include "students/_field.html" with field=form.password %}
+    <div class="row-between">
+      <label class="checkbox">{{ form.remember_me }} Remember me</label>
+      {# Placeholder: password reset is not implemented in this version #}
+      <a href="#" class="link">Forgot password?</a>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+  </form>
+  <p class="switch">New here? <a href="{% url 'signup' %}" class="link">Create an account</a></p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "students/auth_base.html" %}
+{% block title %}Sign Up | Student Management System{% endblock %}
+{% block content %}
+  <h2>Create your account</h2>
+  <p class="subtitle">It only takes a minute.</p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      {% include "students/_field.html" %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+  </form>
+  <p class="switch">Already registered? <a href="{% url 'login' %}" class="link">Log in</a></p>
+{% endblock %}

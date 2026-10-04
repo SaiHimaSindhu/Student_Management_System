@@ -1,0 +1,38 @@
+{% extends "students/base.html" %}
+{% block title %}Profile | Student Management System{% endblock %}
+{% block content %}
+  <h1 class="page-title">Profile</h1>
+
+  <div class="card">
+    <h2 class="section-title">Your details</h2>
+    <dl class="details">
+      <dt>Full Name</dt><dd>{{ user.get_full_name|default:"—" }}</dd>
+      <dt>Username</dt><dd>{{ user.username }}</dd>
+      <dt>Email</dt><dd>{{ user.email|default:"—" }}</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Update Profile</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="profile">
+      <div class="form-grid">
+        {% for field in profile_form %}{% include "students/_field.html" %}{% endfor %}
+      </div>
+      <div class="form-actions"><button type="submit" class="btn btn-primary">Update Profile</button></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Change Password</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="password">
+      <div class="form-grid">
+        {% for field in password_form %}{% include "students/_field.html" %}{% endfor %}
+      </div>
+      <div class="form-actions"><button type="submit" class="btn btn-primary">Change Password</button></div>
+    </form>
+  </div>
+{% endblock %}

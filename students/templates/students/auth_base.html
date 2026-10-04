@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Student Management System{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'students/css/style.css' %}">
+</head>
+<body class="auth-page">
+  <main class="auth-layout">
+    <section class="auth-hero">
+      {% include "students/_illustration.html" %}
+      <h1>Student Management System</h1>
+      <p>Manage admissions, courses and student records in one place.</p>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        {% include "students/_messages.html" %}
+        {% block content %}{% endblock %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>
